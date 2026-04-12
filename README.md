@@ -174,6 +174,4 @@ Set `SECURE_COOKIES=true` in production HTTPS deployments so auth cookies are al
 - SQLite connection is configured in `backend/src/config/data-source.ts`.
 - API health endpoint: `GET /api/health`.
 - Product images are served from `GET /ProductImages/*`.
-# Ecom_
-# Ecomm
 # Ecomm
