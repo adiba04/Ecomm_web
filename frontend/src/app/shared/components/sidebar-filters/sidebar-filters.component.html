@@ -1,0 +1,10 @@
+<aside class="sidebar-filters">
+  <h2>{{ title }}</h2>
+  <form [formGroup]="formGroup" (ngSubmit)="onApply()" class="sidebar-form">
+    <ng-content></ng-content>
+    <div class="sidebar-actions">
+      <button type="submit">Apply</button>
+      <button type="button" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+</aside>

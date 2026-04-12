@@ -1,0 +1,20 @@
+<p *ngIf="loading">Loading product...</p>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<article *ngIf="product" class="detail-card">
+  <img [src]="imageSrc" [alt]="product.name" />
+  <div>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p *ngIf="taxonomyPath"><strong>Taxonomy:</strong> {{ taxonomyPath }}</p>
+    <p><strong>Price:</strong> {{ product.price }}</p>
+    <p><strong>Stock:</strong> {{ product.stockQuantity }}</p>
+
+    <div class="actions">
+      <button *ngIf="isCustomer" (click)="addToCart()" [disabled]="product.stockQuantity <= 0">Add to Cart</button>
+      <button (click)="copyShareUrl()">Share</button>
+    </div>
+
+    <p class="message" *ngIf="message">{{ message }}</p>
+  </div>
+</article>

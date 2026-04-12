@@ -1,0 +1,35 @@
+<h1>My Orders</h1>
+<p class="error" *ngIf="error">{{ error }}</p>
+<p *ngIf="loading">Loading orders...</p>
+
+<section class="order-list" *ngIf="!loading">
+  <article class="order-card" *ngFor="let order of orders">
+    <h3>{{ order.orderNumber }}</h3>
+    <p>Status: {{ order.status }}</p>
+    <p>Payment: {{ order.paymentMethod }}</p>
+    <p>Total: {{ order.totalAmount }}</p>
+    <p>Placed: {{ order.createdAt | date: 'medium' }}</p>
+    <button (click)="viewOrder(order.id)">View Details</button>
+
+    <app-table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.productNameSnapshot }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unitPriceSnapshot }}</td>
+          <td>{{ item.lineTotal }}</td>
+        </tr>
+      </tbody>
+    </app-table>
+
+    <button *ngIf="order.status === 'PENDING'" (click)="confirm(order.id)">Confirm Order</button>
+  </article>
+</section>

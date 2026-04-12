@@ -1,0 +1,25 @@
+<section class="checkout-card">
+  <h1>Checkout</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="checkout-form">
+    <select formControlName="paymentMethod">
+      <option value="CASH_ON_DELIVERY">Cash on Delivery</option>
+      <option value="CREDIT_CARD">Credit Card</option>
+      <option value="DEBIT_CARD">Debit Card</option>
+      <option value="BANK_TRANSFER">Bank Transfer</option>
+    </select>
+
+    <input type="text" placeholder="Full Name" formControlName="shippingFullName" />
+    <input type="text" placeholder="Phone" formControlName="shippingPhone" />
+    <input type="text" placeholder="Address Line 1" formControlName="shippingAddressLine1" />
+    <input type="text" placeholder="Address Line 2" formControlName="shippingAddressLine2" />
+    <input type="text" placeholder="City" formControlName="shippingCity" />
+    <input type="text" placeholder="State" formControlName="shippingState" />
+    <input type="text" placeholder="Postal Code" formControlName="shippingPostalCode" />
+    <input type="text" placeholder="Country" formControlName="shippingCountry" />
+
+    <button type="submit" [disabled]="loading">{{ loading ? 'Processing...' : 'Place Order' }}</button>
+  </form>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+</section>

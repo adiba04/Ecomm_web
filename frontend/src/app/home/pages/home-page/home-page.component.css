@@ -1,0 +1,44 @@
+.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 48%, #1d4ed8 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 2.2rem;
+  box-shadow: 0 18px 34px rgba(37, 99, 235, 0.3);
+}
+
+.hero h1,
+.hero p {
+  color: #fff;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  background: #ffffff;
+  color: #1e3a8a;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.featured {
+  margin-top: 1.35rem;
+}
+
+.featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.featured-header a {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}

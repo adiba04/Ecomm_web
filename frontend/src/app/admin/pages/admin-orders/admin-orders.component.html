@@ -1,0 +1,36 @@
+<h2>All Orders</h2>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<p *ngIf="loading">Loading orders...</p>
+
+<div *ngIf="!loading" class="orders-grid">
+  <article class="order-card" *ngFor="let order of orders">
+    <header>
+      <h3>{{ order.orderNumber }}</h3>
+      <p>Status: {{ order.status }}</p>
+    </header>
+    <p>Payment: {{ order.paymentMethod }}</p>
+    <p>Total: {{ order.totalAmount }}</p>
+    <p>Date: {{ order.createdAt | date: 'medium' }}</p>
+    <button (click)="viewOrder(order.id)">View Details</button>
+
+    <app-table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.productNameSnapshot }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unitPriceSnapshot }}</td>
+          <td>{{ item.lineTotal }}</td>
+        </tr>
+      </tbody>
+    </app-table>
+  </article>
+</div>

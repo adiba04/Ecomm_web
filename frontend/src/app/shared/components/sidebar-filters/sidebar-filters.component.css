@@ -1,0 +1,38 @@
+.sidebar-filters {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1rem;
+  height: fit-content;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.sidebar-filters h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.08rem;
+}
+
+.sidebar-form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.sidebar-form input,
+.sidebar-form select,
+.sidebar-form button {
+  padding: 0.6rem;
+}
+
+.sidebar-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.sidebar-actions button:last-child {
+  background: #334155;
+}
+
+.sidebar-actions button:last-child:hover {
+  background: #1e293b;
+}

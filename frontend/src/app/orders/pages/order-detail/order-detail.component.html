@@ -1,0 +1,39 @@
+<section class="order-detail-card">
+  <h1>Order Details</h1>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Loading order details...</p>
+
+  <article *ngIf="order && !loading">
+    <p><strong>Order Number:</strong> {{ order.orderNumber }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+    <p><strong>Payment Method:</strong> {{ order.paymentMethod }}</p>
+    <p><strong>Placed:</strong> {{ order.createdAt | date: 'medium' }}</p>
+    <p><strong>Subtotal:</strong> {{ order.subtotalAmount }}</p>
+    <p><strong>Shipping:</strong> {{ order.shippingAmount }}</p>
+    <p><strong>Total:</strong> {{ order.totalAmount }}</p>
+
+    <app-table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>SKU</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.productNameSnapshot }}</td>
+          <td>{{ item.skuSnapshot }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unitPriceSnapshot }}</td>
+          <td>{{ item.lineTotal }}</td>
+        </tr>
+      </tbody>
+    </app-table>
+
+    <button (click)="backToOrders()">Back to Orders</button>
+  </article>
+</section>

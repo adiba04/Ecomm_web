@@ -1,0 +1,19 @@
+# Node
+**/node_modules
+
+# Build outputs
+backend/dist
+backend/public
+frontend/dist
+
+# Angular cache
+frontend/.angular
+
+# Env files
+backend/.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

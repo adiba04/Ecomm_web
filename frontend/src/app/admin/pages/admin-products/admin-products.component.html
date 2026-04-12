@@ -1,0 +1,66 @@
+<h2>Product Management</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="grid-form">
+  <select formControlName="typeId" (change)="onTypeChange()">
+    <option value="">Select Type</option>
+    <option *ngFor="let item of types" [value]="item.id">{{ item.name }}</option>
+  </select>
+
+  <select formControlName="categoryId" (change)="onCategoryChange()">
+    <option value="">Select Category</option>
+    <option *ngFor="let item of categories" [value]="item.id">{{ item.name }}</option>
+  </select>
+
+  <select formControlName="subCategoryId">
+    <option value="">Select SubCategory</option>
+    <option *ngFor="let item of subCategories" [value]="item.id">{{ item.name }}</option>
+  </select>
+
+  <input type="text" placeholder="Name" formControlName="name" />
+  <input type="text" placeholder="SKU" formControlName="sku" />
+  <input type="number" placeholder="Price" formControlName="price" />
+  <input type="number" placeholder="Stock" formControlName="stockQuantity" />
+  <input type="text" placeholder="Description" formControlName="description" />
+
+  <label class="checkbox-row">
+    <input type="checkbox" formControlName="isActive" /> Active
+  </label>
+
+  <input type="file" (change)="onImageSelected($event)" accept="image/*" />
+
+  <div class="actions-row">
+    <button type="submit" [disabled]="submitting">{{ editingProductId ? 'Update' : 'Create' }} Product</button>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </div>
+</form>
+
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<p *ngIf="loading">Loading products...</p>
+<app-table *ngIf="!loading">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>SKU</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.sku }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.stockQuantity }}</td>
+      <td>{{ product.isActive ? 'Yes' : 'No' }}</td>
+      <td>
+        <button (click)="startEdit(product)">Edit</button>
+        <button (click)="remove(product)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</app-table>

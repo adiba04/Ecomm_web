@@ -1,0 +1,29 @@
+<h2>Customers</h2>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<p *ngIf="loading">Loading customers...</p>
+<app-table *ngIf="!loading">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Locked</th>
+      <th>Created</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.fullName }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.isLocked ? 'Yes' : 'No' }}</td>
+      <td>{{ customer.createdAt | date: 'medium' }}</td>
+      <td>
+        <button *ngIf="!customer.isLocked" (click)="lock(customer)">Lock</button>
+        <button *ngIf="customer.isLocked" (click)="unlock(customer)">Unlock</button>
+      </td>
+    </tr>
+  </tbody>
+</app-table>

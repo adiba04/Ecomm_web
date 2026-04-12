@@ -1,0 +1,24 @@
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 1.1rem;
+}
+
+.grid-form input,
+.grid-form select,
+.grid-form button {
+  padding: 0.6rem;
+}
+
+.actions-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+}

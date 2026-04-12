@@ -1,0 +1,31 @@
+.admin-header {
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.2rem;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-nav a {
+  padding: 0.52rem 0.8rem;
+  background: #e2e8f0;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.admin-nav a.active {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.admin-content {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.1rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}

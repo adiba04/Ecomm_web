@@ -1,0 +1,47 @@
+<section class="admin-order-detail">
+  <h2>Order Detail</h2>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Loading order details...</p>
+
+  <article *ngIf="order && !loading">
+    <p><strong>Order Number:</strong> {{ order.orderNumber }}</p>
+    <p><strong>Customer ID:</strong> {{ order.userId }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+    <p><strong>Payment Method:</strong> {{ order.paymentMethod }}</p>
+    <p><strong>Placed:</strong> {{ order.createdAt | date: 'medium' }}</p>
+    <p><strong>Total:</strong> {{ order.totalAmount }}</p>
+
+    <p *ngIf="order.shippingFullName"><strong>Ship To:</strong> {{ order.shippingFullName }}</p>
+    <p *ngIf="order.shippingPhone"><strong>Phone:</strong> {{ order.shippingPhone }}</p>
+    <p *ngIf="order.shippingAddressLine1">
+      <strong>Address:</strong>
+      {{ order.shippingAddressLine1 }}
+      <span *ngIf="order.shippingAddressLine2">, {{ order.shippingAddressLine2 }}</span>
+      , {{ order.shippingCity }}, {{ order.shippingState }} {{ order.shippingPostalCode }}, {{ order.shippingCountry }}
+    </p>
+
+    <app-table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>SKU</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.productNameSnapshot }}</td>
+          <td>{{ item.skuSnapshot }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unitPriceSnapshot }}</td>
+          <td>{{ item.lineTotal }}</td>
+        </tr>
+      </tbody>
+    </app-table>
+
+    <button (click)="backToOrders()">Back to Orders</button>
+  </article>
+</section>

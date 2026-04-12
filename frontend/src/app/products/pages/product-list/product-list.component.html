@@ -1,0 +1,51 @@
+<section class="products-layout">
+  <app-sidebar-filters [formGroup]="filtersForm" title="Filters" (apply)="applyFilters()" (reset)="resetFilters()">
+      <input type="text" placeholder="Search products" formControlName="search" />
+
+      <select formControlName="typeId" (change)="onTypeChange()">
+        <option value="">All Types</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+
+      <select formControlName="categoryId" (change)="onCategoryChange()">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+
+      <select formControlName="subCategoryId">
+        <option value="">All SubCategories</option>
+        <option *ngFor="let subCategory of subCategories" [value]="subCategory.id">{{ subCategory.name }}</option>
+      </select>
+
+      <input type="text" placeholder="SubCategory name (e.g. Keyboards)" formControlName="subCategoryName" />
+
+      <input type="number" placeholder="Min price" formControlName="minPrice" />
+      <input type="number" placeholder="Max price" formControlName="maxPrice" />
+
+      <select formControlName="inStock">
+        <option value="">Any stock status</option>
+        <option value="true">In stock only</option>
+        <option value="false">Out of stock only</option>
+      </select>
+  </app-sidebar-filters>
+
+  <section class="products-content">
+    <h1>Products</h1>
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <p *ngIf="loading">Loading products...</p>
+
+    <div class="products-grid" *ngIf="!loading">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+        (view)="openProduct(product)">
+      </app-product-card>
+    </div>
+
+    <div class="pager">
+      <button (click)="prevPage()" [disabled]="page <= 1">Previous</button>
+      <span>Page {{ page }} / {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
+    </div>
+  </section>
+</section>

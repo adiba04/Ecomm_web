@@ -1,0 +1,23 @@
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a routerLink="/" class="brand">Ecom</a>
+    <nav class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/products">Products</a>
+      <ng-container *ngIf="user$ | async as user; else authLinks">
+        <a *ngIf="isCustomer" routerLink="/cart">Cart</a>
+        <a *ngIf="isCustomer" routerLink="/checkout">Checkout</a>
+        <a *ngIf="isCustomer" routerLink="/orders">Orders</a>
+        <a routerLink="/profile">Profile</a>
+        <a *ngIf="isAdmin" routerLink="/admin">Admin</a>
+        <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+        <span class="user-pill">{{ user.fullName }}</span>
+      </ng-container>
+
+      <ng-template #authLinks>
+        <a routerLink="/auth/login">Login</a>
+        <a routerLink="/auth/register">Register</a>
+      </ng-template>
+    </nav>
+  </div>
+</header>

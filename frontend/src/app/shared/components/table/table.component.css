@@ -1,0 +1,31 @@
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+.app-table th,
+.app-table td {
+  border-bottom: 1px solid #eef2f7;
+  padding: 0.62rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.app-table thead th {
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.app-table tbody tr:hover {
+  background: #f8fbff;
+}

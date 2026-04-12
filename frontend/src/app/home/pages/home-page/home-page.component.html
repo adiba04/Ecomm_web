@@ -1,0 +1,19 @@
+<section class="hero">
+  <h1>Welcome to Ecom</h1>
+  <p>Discover products with secure checkout and fast order tracking.</p>
+  <a routerLink="/products" class="btn">Shop Now</a>
+</section>
+
+<section class="featured">
+  <div class="featured-header">
+    <h2>Featured Products</h2>
+    <a routerLink="/products">View All</a>
+  </div>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Loading featured products...</p>
+
+  <div class="featured-grid" *ngIf="!loading">
+    <app-product-card *ngFor="let product of products" [product]="product" (view)="openProduct(product)"></app-product-card>
+  </div>
+</section>
