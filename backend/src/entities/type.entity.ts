@@ -26,10 +26,10 @@ export class Type {
   @Column({ type: 'varchar', length: 300, name: 'description', nullable: true })
   description!: string | null;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt!: Date;
 
   @OneToMany(() => Category, (category) => category.type)

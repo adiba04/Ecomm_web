@@ -40,13 +40,13 @@ export class User {
   @Column({ type: 'boolean', name: 'is_locked', default: false })
   isLocked!: boolean;
 
-  @Column({ type: 'timestamp', name: 'last_login_at', nullable: true })
+  @Column({ type: 'datetime', name: 'last_login_at', nullable: true })
   lastLoginAt!: Date | null;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt!: Date;
 
   @OneToOne(() => Cart, (cart) => cart.user)

@@ -4,7 +4,7 @@ Production-ready e-commerce application using Express + Angular with single-serv
 
 ## Stack
 
-- Backend: Node.js + Express + TypeScript + TypeORM + SQL Server
+- Backend: Node.js + Express + TypeScript + TypeORM + SQLite (`better-sqlite3`)
 - Frontend: Angular + TypeScript + Plain CSS
 
 ## Structure
@@ -33,9 +33,9 @@ cd backend
 cp .env.example .env
 ```
 
-2. Update SQL Server credentials in `backend/.env`.
+2. Set the SQLite database file path in `backend/.env` (`DB_PATH`).
 
-3. For local frontend/UI work without SQL Server running, set `DB_REQUIRED=false`.
+3. For local frontend/UI work without DB initialization, set `DB_REQUIRED=false`.
 4. For first-time local DB setup, keep `DB_SYNCHRONIZE=true` to auto-create tables from entities.
 
 ## Install
@@ -171,7 +171,7 @@ Set `SECURE_COOKIES=true` in production HTTPS deployments so auth cookies are al
 
 ## Notes
 
-- SQL Server connection is configured in `backend/src/config/data-source.ts`.
+- SQLite connection is configured in `backend/src/config/data-source.ts`.
 - API health endpoint: `GET /api/health`.
 - Product images are served from `GET /ProductImages/*`.
 # Ecom_

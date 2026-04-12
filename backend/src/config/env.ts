@@ -1,9 +1,7 @@
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
-
-const required = ['DB_HOST', 'DB_USERNAME', 'DB_PASSWORD', 'DB_NAME'] as const;
-const dbUrl = process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
 
 const toNumber = (value: string | undefined, fallback: number): number => {
   const parsed = Number(value);
@@ -29,30 +27,7 @@ const toBoolean = (value: string | undefined, fallback: boolean): boolean => {
 
 const dbRequired = toBoolean(process.env.DB_REQUIRED, true);
 
-if (dbRequired) {
-  if (!dbUrl) {
-    const hasHost = Boolean(process.env.DB_HOST ?? process.env.PGHOST ?? process.env.POSTGRES_HOST);
-    const hasUser = Boolean(process.env.DB_USERNAME ?? process.env.PGUSER ?? process.env.POSTGRES_USER);
-    const hasPassword = Boolean(process.env.DB_PASSWORD ?? process.env.PGPASSWORD ?? process.env.POSTGRES_PASSWORD);
-    const hasDatabase = Boolean(process.env.DB_NAME ?? process.env.PGDATABASE ?? process.env.POSTGRES_DATABASE);
-
-    if (!hasHost) {
-      throw new Error(`Missing required environment variable: ${required[0]}`);
-    }
-
-    if (!hasUser) {
-      throw new Error(`Missing required environment variable: ${required[1]}`);
-    }
-
-    if (!hasPassword) {
-      throw new Error(`Missing required environment variable: ${required[2]}`);
-    }
-
-    if (!hasDatabase) {
-      throw new Error(`Missing required environment variable: ${required[3]}`);
-    }
-  }
-}
+const dbPath = process.env.DB_PATH ?? 'data/ecom.sqlite';
 
 export const env = {
   nodeEnv: process.env.NODE_ENV ?? 'development',
@@ -79,13 +54,7 @@ export const env = {
   db: {
     required: dbRequired,
     synchronize: toBoolean(process.env.DB_SYNCHRONIZE, (process.env.NODE_ENV ?? 'development') === 'development'),
-    url: dbUrl,
-    host: process.env.DB_HOST ?? process.env.PGHOST ?? process.env.POSTGRES_HOST ?? 'localhost',
-    port: Number(process.env.DB_PORT ?? process.env.PGPORT ?? 5432),
-    username: process.env.DB_USERNAME ?? process.env.PGUSER ?? process.env.POSTGRES_USER ?? 'postgres',
-    password: process.env.DB_PASSWORD ?? process.env.PGPASSWORD ?? process.env.POSTGRES_PASSWORD ?? '',
-    database: process.env.DB_NAME ?? process.env.PGDATABASE ?? process.env.POSTGRES_DATABASE ?? 'ecom_db',
-    ssl: toBoolean(process.env.DB_SSL, true),
-    sslRejectUnauthorized: toBoolean(process.env.DB_SSL_REJECT_UNAUTHORIZED, false)
+    path: path.resolve(process.cwd(), dbPath),
+    journalMode: process.env.DB_JOURNAL_MODE ?? 'WAL'
   }
 };

@@ -34,6 +34,11 @@ export class LoginComponent {
     this.authService.login(this.form.getRawValue() as { email: string; password: string }).subscribe({
       next: () => {
         this.loading = false;
+        if (this.authService.isAdmin) {
+          this.router.navigate(['/admin']);
+          return;
+        }
+
         this.router.navigate(['/products']);
       },
       error: (err) => {

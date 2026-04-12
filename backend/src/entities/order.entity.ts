@@ -75,10 +75,10 @@ export class Order {
   @Column({ type: 'varchar', length: 100, name: 'shipping_country' })
   shippingCountry!: string;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt!: Date;
 
   @ManyToOne(() => User, (user) => user.orders, { onDelete: 'NO ACTION' })

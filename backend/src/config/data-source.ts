@@ -1,23 +1,19 @@
 import 'reflect-metadata';
+import fs from 'fs';
 import path from 'path';
 import { DataSource } from 'typeorm';
 import { env } from './env';
 
+fs.mkdirSync(path.dirname(env.db.path), { recursive: true });
+
 export const AppDataSource = new DataSource({
-  type: 'postgres',
-  url: env.db.url,
-  host: env.db.host,
-  port: env.db.port,
-  username: env.db.username,
-  password: env.db.password,
-  database: env.db.database,
+  type: 'better-sqlite3',
+  database: env.db.path,
   entities: [path.join(__dirname, '../entities/**/*.{ts,js}')],
   migrations: [path.join(__dirname, '../migrations/**/*.{ts,js}')],
   synchronize: env.db.synchronize,
   logging: env.nodeEnv === 'development',
-  ssl: env.db.ssl
-    ? {
-        rejectUnauthorized: env.db.sslRejectUnauthorized
-      }
-    : false
+  prepareDatabase: (database) => {
+    database.pragma(`journal_mode = ${env.db.journalMode}`);
+  }
 });

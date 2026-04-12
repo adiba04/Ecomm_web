@@ -21,10 +21,10 @@ export class Cart {
   @Column({ type: 'int', name: 'user_id' })
   userId!: number;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt!: Date;
 
   @OneToOne(() => User, (user) => user.cart, { onDelete: 'CASCADE' })

@@ -29,10 +29,10 @@ export class SubCategory {
   @Column({ type: 'varchar', length: 140, name: 'slug' })
   slug!: string;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt!: Date;
 
   @ManyToOne(() => Category, (category) => category.subCategories, { onDelete: 'CASCADE' })

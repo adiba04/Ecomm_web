@@ -1,6 +1,7 @@
 import { createApp } from './app';
 import { AppDataSource } from './config/data-source';
 import { env } from './config/env';
+import { ensureAdminSeed } from './seeds/admin.seed';
 import { runDemoDataSeed } from './seeds/demo-data.seed';
 
 const startHttpServer = (): void => {
@@ -16,12 +17,14 @@ const bootstrap = async (): Promise<void> => {
   try {
     if (env.db.required) {
       await AppDataSource.initialize();
+      await ensureAdminSeed();
       await runDemoDataSeed();
       // eslint-disable-next-line no-console
       console.log('Database connected');
     } else {
       try {
         await AppDataSource.initialize();
+        await ensureAdminSeed();
         await runDemoDataSeed();
         // eslint-disable-next-line no-console
         console.log('Database connected');

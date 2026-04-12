@@ -23,13 +23,13 @@ export class PasswordResetCode {
   @Column({ type: 'varchar', length: 12, name: 'code' })
   code!: string;
 
-  @Column({ type: 'timestamp', name: 'expires_at' })
+  @Column({ type: 'datetime', name: 'expires_at' })
   expiresAt!: Date;
 
-  @Column({ type: 'timestamp', name: 'used_at', nullable: true })
+  @Column({ type: 'datetime', name: 'used_at', nullable: true })
   usedAt!: Date | null;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt!: Date;
 
   @ManyToOne(() => User, (user) => user.passwordResetCodes, { onDelete: 'CASCADE' })
