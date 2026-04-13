@@ -41,7 +41,6 @@ cp .env.example .env
 ## Install
 
 ```bash
-cd /Users/neelx/Desktop/4x4/adiba/ecom
 npm install
 npm run install:all
 ```
@@ -51,7 +50,6 @@ npm run install:all
 ### Run both frontend + backend
 
 ```bash
-cd /Users/neelx/Desktop/4x4/adiba/ecom
 npm run dev
 ```
 
@@ -60,21 +58,18 @@ npm run dev
 ### Backend
 
 ```bash
-cd /Users/neelx/Desktop/4x4/adiba/ecom/backend
 npm run dev
 ```
 
 ### Frontend
 
 ```bash
-cd /Users/neelx/Desktop/4x4/adiba/ecom/frontend
 npm start
 ```
 
 ## Production Build + Single Server Run
 
 ```bash
-cd /Users/neelx/Desktop/4x4/adiba/ecom
 npm run build
 npm start
 ```
